@@ -59,15 +59,11 @@ export const VerifyCode = async (req,res)=>{
     }
 }
 
-
-
-
 export const ResendCode = async (req,res)=>{
-    var code =  Math.floor(1000+Math.random()*9000)
-    req.body.code = code
-    // res.send(code) 
-    //console.log("code-----",code)
-    var data = await User.findByIdAndUpdate({_id:req.body.id},req.body)
+    var otp =  Math.floor(10000+Math.random()*900000)
+    req.body.otp = otp
+    var data = await User.findByIdAndUpdate({_id:req.body._id},req.body)
+    data.otp = req.body.otp
     if(data){
         res.send({
             status:true,
